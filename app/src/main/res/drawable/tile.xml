@@ -7,13 +7,17 @@
  ! We make no guarantees that this code is fit for any purpose. 
  ! Visit http://www.pragmaticprogrammer.com/titles/eband4 for more book information.
 -->
-<resources>
-   <color name="field_color">#b5cee0</color>
-   <color name="border_color">#7f7f7f</color>
-   <color name="dark_border_color">#4f4f4f</color>
-   <color name="available_color">#7fbf7f</color>
-   <color name="blue_color">#7f7fff</color>
-   <color name="gray_color">#bfbfbf</color>
-   <color name="purple_color">#7f007f</color>
-   <color name="red_color">#ff7f7f</color>
-</resources>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android" >
+   <item
+      android:drawable="@drawable/x_blue"
+      android:maxLevel="0" />
+   <item
+      android:drawable="@drawable/o_red"
+      android:maxLevel="1" />
+   <item
+      android:drawable="@drawable/tile_empty"
+      android:maxLevel="2" />
+   <item
+      android:drawable="@drawable/tile_available"
+      android:maxLevel="3" />
+</level-list>

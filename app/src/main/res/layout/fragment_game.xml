@@ -6,19 +6,16 @@
  ! We make no guarantees that this code is fit for any purpose. 
  ! Visit http://www.pragmaticprogrammer.com/titles/eband4 for more book information.
 -->
-<FrameLayout
+<RelativeLayout
    xmlns:android="http://schemas.android.com/apk/res/android"
    xmlns:tools="http://schemas.android.com/tools"
-   android:layout_width="match_parent"
-   android:layout_height="match_parent"
-   android:clipChildren="false"
-   tools:context=".TicTacToeActivity">
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   tools:context=".GameActivity">
 
-   <fragment
-      android:id="@+id/main_fragment"
-      class="org.example.tictactoe.MainFragment"
+   <include
+      layout="@layout/large_board"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      tools:layout="@layout/fragment_main"/>
-</FrameLayout>
+      android:layout_height="wrap_content"/>
+
+</RelativeLayout>

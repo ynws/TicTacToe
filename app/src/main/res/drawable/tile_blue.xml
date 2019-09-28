@@ -7,13 +7,11 @@
  ! We make no guarantees that this code is fit for any purpose. 
  ! Visit http://www.pragmaticprogrammer.com/titles/eband4 for more book information.
 -->
-<resources>
-   <color name="field_color">#b5cee0</color>
-   <color name="border_color">#7f7f7f</color>
-   <color name="dark_border_color">#4f4f4f</color>
-   <color name="available_color">#7fbf7f</color>
-   <color name="blue_color">#7f7fff</color>
-   <color name="gray_color">#bfbfbf</color>
-   <color name="purple_color">#7f007f</color>
-   <color name="red_color">#ff7f7f</color>
-</resources>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle">
+   <stroke
+      android:width="@dimen/stroke_width"
+      android:color="@color/dark_border_color"/>
+   <solid android:color="@color/blue_color"/>
+   <corners android:radius="@dimen/corner_radius"/>
+</shape>
