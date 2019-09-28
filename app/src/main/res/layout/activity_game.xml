@@ -32,6 +32,7 @@
          android:layout_height="wrap_content"
          tools:layout="@layout/fragment_game"/>
       <!-- Control fragment goes here... -->
+
       <fragment
          android:id="@+id/fragment_game_controls"
          class="org.example.tictactoe.ControlFragment"

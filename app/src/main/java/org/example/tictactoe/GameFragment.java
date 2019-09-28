@@ -9,6 +9,8 @@
 package org.example.tictactoe;
 
 import android.app.Fragment;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -21,7 +23,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class GameFragment extends Fragment {
-   // Data structures go here...
    static private int mLargeIds[] = {R.id.large1, R.id.large2, R.id.large3,
          R.id.large4, R.id.large5, R.id.large6, R.id.large7, R.id.large8,
          R.id.large9,};
@@ -29,12 +30,15 @@ public class GameFragment extends Fragment {
          R.id.small4, R.id.small5, R.id.small6, R.id.small7, R.id.small8,
          R.id.small9,};
    private Handler mHandler = new Handler();
-   // ...
    private Tile mEntireBoard = new Tile(this);
    private Tile mLargeTiles[] = new Tile[9];
    private Tile mSmallTiles[][] = new Tile[9][9];
    private Tile.Owner mPlayer = Tile.Owner.X;
    private Set<Tile> mAvailable = new HashSet<Tile>();
+   private int mSoundX, mSoundO, mSoundMiss, mSoundRewind;
+   private SoundPool mSoundPool;
+   private float mVolume = 1f;
+   // ...
    private int mLastLarge;
    private int mLastSmall;
 
@@ -44,6 +48,11 @@ public class GameFragment extends Fragment {
       // Retain this fragment across configuration changes.
       setRetainInstance(true);
       initGame();
+      mSoundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
+      mSoundX = mSoundPool.load(getActivity(), R.raw.sergenious_movex, 1);
+      mSoundO = mSoundPool.load(getActivity(), R.raw.sergenious_moveo, 1);
+      mSoundMiss = mSoundPool.load(getActivity(), R.raw.erkanozan_miss, 1);
+      mSoundRewind = mSoundPool.load(getActivity(), R.raw.joanne_rewind, 1);
    }
 
    private void clearAvailable() {
@@ -86,8 +95,11 @@ public class GameFragment extends Fragment {
                @Override
                public void onClick(View view) {
                   if (isAvailable(smallTile)) {
+                     mSoundPool.play(mSoundX, mVolume, mVolume, 1, 0, 1f);
                      makeMove(fLarge, fSmall);
                      think();
+                  } else {
+                     mSoundPool.play(mSoundMiss, mVolume, mVolume, 1, 0, 1f);
                   }
                }
             });
@@ -106,9 +118,12 @@ public class GameFragment extends Fragment {
                int move[] = new int[2];
                pickMove(move);
                if (move[0] != -1 && move[1] != -1) {
+                  // ...
                   switchTurns();
+                  mSoundPool.play(mSoundO, mVolume, mVolume, 1, 0, 1f);
                   makeMove(move[0], move[1]);
                   switchTurns();
+                  // ...
                }
             }
             ((GameActivity) getActivity()).stopThinking();
@@ -174,6 +189,8 @@ public class GameFragment extends Fragment {
    }
 
    public void restartGame() {
+      mSoundPool.play(mSoundRewind, mVolume, mVolume, 1, 0, 1f);
+      // ...
       initGame();
       initViews(getView());
       updateAllTiles();
