@@ -14,8 +14,10 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 public class GameActivity extends Activity {
+   // ...
    public static final String KEY_RESTORE = "key_restore";
    public static final String PREF_RESTORE = "pref_restore";
    private GameFragment mGameFragment;
@@ -58,6 +60,16 @@ public class GameActivity extends Activity {
 
       // Reset the board to the initial position
       mGameFragment.initGame();
+   }
+
+   public void startThinking() {
+      View thinkView = findViewById(R.id.thinking);
+      thinkView.setVisibility(View.VISIBLE);
+   }
+
+   public void stopThinking() {
+      View thinkView = findViewById(R.id.thinking);
+      thinkView.setVisibility(View.GONE);
    }
 
    @Override

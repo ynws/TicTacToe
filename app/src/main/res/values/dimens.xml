@@ -17,6 +17,7 @@
    <dimen name="small_board_margin">2dp</dimen>
    <dimen name="elevation_low">4dp</dimen>
    <dimen name="elevation_high">8dp</dimen>
+   <dimen name="thinking_progress_size">50dp</dimen>
    <dimen name="stroke_width">1dp</dimen>
    <dimen name="corner_radius">4dp</dimen>
 

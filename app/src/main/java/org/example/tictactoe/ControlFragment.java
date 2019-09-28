@@ -38,4 +38,5 @@ public class ControlFragment extends Fragment {
       });
       return rootView;
    }
+
 }
