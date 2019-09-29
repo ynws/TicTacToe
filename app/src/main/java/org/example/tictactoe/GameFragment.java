@@ -38,7 +38,6 @@ public class GameFragment extends Fragment {
    private int mSoundX, mSoundO, mSoundMiss, mSoundRewind;
    private SoundPool mSoundPool;
    private float mVolume = 1f;
-   // ...
    private int mLastLarge;
    private int mLastSmall;
 
@@ -60,6 +59,7 @@ public class GameFragment extends Fragment {
    }
 
    private void addAvailable(Tile tile) {
+      tile.animate();
       mAvailable.add(tile);
    }
 
@@ -94,7 +94,10 @@ public class GameFragment extends Fragment {
             inner.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
+                  smallTile.animate();
+                  // ...
                   if (isAvailable(smallTile)) {
+                     ((GameActivity)getActivity()).startThinking();
                      mSoundPool.play(mSoundX, mVolume, mVolume, 1, 0, 1f);
                      makeMove(fLarge, fSmall);
                      think();
@@ -109,7 +112,6 @@ public class GameFragment extends Fragment {
    }
 
    private void think() {
-      ((GameActivity)getActivity()).startThinking();
       mHandler.postDelayed(new Runnable() {
          @Override
          public void run() {
@@ -118,12 +120,11 @@ public class GameFragment extends Fragment {
                int move[] = new int[2];
                pickMove(move);
                if (move[0] != -1 && move[1] != -1) {
-                  // ...
                   switchTurns();
-                  mSoundPool.play(mSoundO, mVolume, mVolume, 1, 0, 1f);
+                  mSoundPool.play(mSoundO, mVolume, mVolume,
+                        1, 0, 1f);
                   makeMove(move[0], move[1]);
                   switchTurns();
-                  // ...
                }
             }
             ((GameActivity) getActivity()).stopThinking();
@@ -178,6 +179,7 @@ public class GameFragment extends Fragment {
       Tile.Owner oldWinner = largeTile.getOwner();
       Tile.Owner winner = largeTile.findWinner();
       if (winner != oldWinner) {
+         largeTile.animate();
          largeTile.setOwner(winner);
       }
       winner = mEntireBoard.findWinner();

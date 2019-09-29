@@ -23,7 +23,6 @@ public class GameActivity extends Activity {
    public static final String PREF_RESTORE = "pref_restore";
    private MediaPlayer mMediaPlayer;
    private Handler mHandler = new Handler();
-   // ...
    private GameFragment mGameFragment;
 
    @Override
@@ -77,7 +76,8 @@ public class GameActivity extends Activity {
          }
       }, 500);
 
-      mGameFragment.initGame();  // Reset the board to the initial position
+      // Reset the board to the initial position
+      mGameFragment.initGame();
    }
 
    public void startThinking() {
