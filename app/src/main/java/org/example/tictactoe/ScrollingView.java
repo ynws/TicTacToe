@@ -71,8 +71,7 @@ public class ScrollingView extends View {
          // Shift where the image will be drawn
          mScrollPos += 2;
          if (mScrollPos >= max) mScrollPos -= max;
-         setTranslationX(-mScrollPos);
-         setTranslationY(-mScrollPos);
+         canvas.translate(-mScrollPos, -mScrollPos);
 
          // Draw it and indicate it should be drawn next time too
          mBackground.draw(canvas);
